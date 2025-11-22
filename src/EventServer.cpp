@@ -5,6 +5,7 @@
 #include <event2/bufferevent.h>
 #include <event2/event.h>
 #include <event2/listener.h>
+#include <event2/thread.h>
 
 #ifdef PLATFORM_LINUX
 #include <netinet/in.h>
@@ -91,11 +92,19 @@ EventServer::EventServer()
 
 int EventServer::Run(const char* addr, unsigned short port)
 {
+#ifdef PLAFRORM_LINUX
     m_base = event_base_new();
-    // event_config* config = event_config_new();
-    // event_config_set_flag(config, EVENT_BASE_FLAG_EPOLL_USE_CHANGELIST);
-    // m_base = event_base_new_with_config(config);
-    // event_config_free(config);
+#else
+    SYSTEM_INFO sysInfo;
+    GetSystemInfo(&sysInfo);
+    event_config* config = event_config_new();
+    evthread_use_windows_threads();
+    event_config_set_flag(config, EVENT_BASE_FLAG_STARTUP_IOCP);
+    event_config_set_num_cpus_hint(config, sysInfo.dwNumberOfProcessors * 2);
+    m_base = event_base_new_with_config(config);
+    event_config_free(config);
+#endif
+    
     sockaddr_in sockAddr;
     sockAddr.sin_family = AF_INET;
     sockAddr.sin_port = port;
