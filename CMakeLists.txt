@@ -14,6 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(HEADER_FILES
     "include/PlatformDef.h"
     "include/AuroraLog.h"
+    "include/AuroraPackage.h"
     "include/AuroraServer.h"
     "include/EventServer.h"
     "include/AuroraServerConfig.h"
@@ -22,6 +23,7 @@ set(HEADER_FILES
 set(SOURCE_FILES
     "src/main.cpp"
     "src/AuroraLog.cpp"
+    "src/AuroraPackage.cpp"
     "src/EventServer.cpp"
     "src/AuroraServer.cpp"
     "src/AuroraServerConfig.cpp"

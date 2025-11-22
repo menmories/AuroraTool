@@ -11,7 +11,7 @@ extern "C"
 }
 
 #include "PlatformDef.h"
-
+#include "AuroraPackage.h"
 class EventServer
 {
 public:
@@ -19,7 +19,7 @@ public:
 
     int Run(const char* addr, unsigned short port);
 protected:
-    
+    virtual void RecvData(struct bufferevent* bev, AuroraPackage* package);
 private:
     static void Listener_Cb(struct evconnlistener *, evutil_socket_t, struct sockaddr *, int socklen, void *);
     static void Read_Cb(struct bufferevent *bev, void *ctx);

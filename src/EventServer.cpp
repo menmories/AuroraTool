@@ -118,6 +118,11 @@ int EventServer::Run(const char* addr, unsigned short port)
     return event_base_dispatch(m_base);
 }
 
+void EventServer::RecvData(bufferevent* bev, AuroraPackage* package)
+{
+
+}
+
 void EventServer::Listener_Cb(struct evconnlistener *, evutil_socket_t, struct sockaddr *, int socklen, void *args)
 {
     EventServer* pThis = (EventServer*)args;

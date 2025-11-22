@@ -1,13 +1,6 @@
 #ifndef PLATFORMDEF_H
 #define PLATFORMDEF_H
 
-// #ifndef PLATFORM_WINDOWS
-// #define PLATFORM_WINDOWS
-// #endif  // !PLATFORM_WINDOWS
-// #ifdef _WIN32
-// #pragma message("Compiling for Windows platform")
-// #define PLATFORM_WINDOWS 1
-// #endif
 #ifdef _MSC_VER
 #define PLATFORM_WINDOWS
 #endif
@@ -34,20 +27,12 @@ typedef signed long long s64;
 typedef float f32;
 typedef double f64;
 
-typedef HWND WINID;
+#define AURORA_INLINE __forceinline
 
-#include <string>
-#ifdef _UNICODE
-typedef std::wstring PaString;
-#else
-typedef std::string PaString;
-#endif
-
-#define FANTACY_INLINE __forceinline
 #ifdef  FANTACY_EXPORT
 #define FANTACY_API __declspec(dllexport)
 #else 
-#define FANTACY_API __declspec(dllimport)
+#define AURORA_API __declspec(dllimport)
 #endif  // FANTACY_EXPORTdwQADDWAWDAADWAASD
 
 
@@ -71,9 +56,10 @@ typedef signed long long s64;
 typedef float f32;
 typedef double f64;
 
-typedef int WINID;
-
 #include <unistd.h>
+
+#define AURORA_API
+#define AURORA_INLINE __forceinline
 
 #endif  // !PLATFORM_LINUX
 
