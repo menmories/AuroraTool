@@ -12,6 +12,8 @@
 #include <sys/socket.h>
 #endif
 
+#include "AuroraLog.h"
+
 #define BUFFER_SIZE 1024     //每次发送/接收最高1024个字节
 #define START_DATA  0xA5
 
@@ -92,7 +94,10 @@ EventServer::EventServer()
 
 int EventServer::Run(const char* addr, unsigned short port)
 {
-#ifdef PLAFRORM_LINUX
+    // printf("PLAFRORM_LINUX=%d\n", PLAFRORM_LINUX);
+    // printf("PLAFRORM_WINDOWS=%d\n", PLAFRORM_WINDOWS);
+    // #define PLAFRORM_LINUX
+#ifdef PLATFORM_LINUX
     m_base = event_base_new();
 #else
     SYSTEM_INFO sysInfo;

@@ -10,6 +10,8 @@ extern "C"
 #include <event2/listener.h>
 }
 
+#include "PlatformDef.h"
+
 class EventServer
 {
 public:

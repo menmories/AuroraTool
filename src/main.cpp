@@ -1,5 +1,5 @@
 
-
+#include "PlatformDef.h"
 #include "AuroraServer.h"
 #include "AuroraServerConfig.h"
 

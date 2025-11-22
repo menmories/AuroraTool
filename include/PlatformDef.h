@@ -4,9 +4,10 @@
 // #ifndef PLATFORM_WINDOWS
 // #define PLATFORM_WINDOWS
 // #endif  // !PLATFORM_WINDOWS
-#ifdef _WIN32
-#define PLATFORM_WINDOWS
-#endif
+// #ifdef _WIN32
+// #pragma message("Compiling for Windows platform")
+// #define PLATFORM_WINDOWS 1
+// #endif
 
 #ifdef __linux__
 #define PLATFORM_LINUX
@@ -53,7 +54,6 @@ typedef std::string PaString;
 
 
 #ifdef PLATFORM_LINUX
-#define PLATFORM_LINUX
 
 typedef unsigned char u8;
 typedef unsigned short u16;
