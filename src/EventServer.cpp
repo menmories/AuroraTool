@@ -114,7 +114,7 @@ int EventServer::Run(const char* addr, unsigned short port)
     sockAddr.sin_family = AF_INET;
     sockAddr.sin_port = port;
     sockAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    m_listener = evconnlistener_new_bind(m_base, Listener_Cb, this, LEV_OPT_REUSEABLE, 137, (const struct sockaddr*)&sockAddr, sizeof(sockAddr));
+    m_listener = evconnlistener_new_bind(m_base, Listener_Cb, this, LEV_OPT_REUSEABLE, 533, (const struct sockaddr*)&sockAddr, sizeof(sockAddr));
     return event_base_dispatch(m_base);
 }
 

@@ -8,6 +8,9 @@
 // #pragma message("Compiling for Windows platform")
 // #define PLATFORM_WINDOWS 1
 // #endif
+#ifdef _MSC_VER
+#define PLATFORM_WINDOWS
+#endif
 
 #ifdef __linux__
 #define PLATFORM_LINUX

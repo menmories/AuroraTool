@@ -30,7 +30,7 @@ set(SOURCE_FILES
 if(MSVC)
     add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
     add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-    add_definitions(-D _CRT_SECURE_NO_WARNINGS PLATFORM_WINDOWS)
+    add_definitions(-D _CRT_SECURE_NO_WARNINGS)
 
     #添加visual studio 文件过滤器
     foreach(header ${PROJECT_HEADERS})
@@ -63,6 +63,7 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
   # using Intel C++
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   # using Visual Studio C++
+  message("using MSVC")
 endif()
 
 add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SOURCE_FILES})
