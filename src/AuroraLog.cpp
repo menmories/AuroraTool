@@ -1,17 +1,80 @@
 #include "AuroraLog.h"
 #include <cstdio>
 #include <ctime>
+#include <cstdio>
+
+std::string g_strLogFileName = "AuroraServer.log";
+FILE* g_pLogFile;
+
 
 AuroraLog::AuroraLog()
+{
+}
+
+AuroraLog::~AuroraLog()
 {
 }
 
 int AuroraLog::Println(const std::string& log)
 {
 	time_t nowtime;
-	time(&nowtime); //»ñÈ¡1970Äê1ÔÂ1ÈÕ0µã0·Ö0Ãëµ½ÏÖÔÚ¾­¹ýµÄÃëÊý
-	tm* p = localtime(&nowtime); //½«ÃëÊý×ª»»Îª±¾µØÊ±¼ä,Äê´Ó1900ËãÆð,ÐèÒª+1900,ÔÂÎª0-11,ËùÒÔÒª+1
+	time(&nowtime); //èŽ·å–1970å¹´1æœˆ1æ—¥0ç‚¹0åˆ†0ç§’åˆ°çŽ°åœ¨ç»è¿‡çš„ç§’æ•°
+	tm* p = localtime(&nowtime); //å°†ç§’æ•°è½¬æ¢ä¸ºæœ¬åœ°æ—¶é—´,å¹´ä»Ž1900ç®—èµ·,éœ€è¦+1900,æœˆä¸º0-11,æ‰€ä»¥è¦+1
 	//printf("%04d:%02d:%02d %02d:%02d:%02d\n", p->tm_year + 1900, p->tm_mon + 1, p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec);
     return printf("[%d-%02d-%02d %02d:%02d:%02d] %s\n", p->tm_year + 1900, p->tm_mon + 1, p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec, log.c_str());
+}
+
+int AuroraLog::Println(int type, std::string& log)
+{
+	int ret = 0;
+	if (type == LOG_WARNING)
+	{
+		ret = Println(log);
+	}
+	else if(type == LOG_ERROR)
+	{
+		_WriteToFile(log);
+	}
+	else if ((type & LOG_WARNING) && (type & LOG_ERROR))
+	{
+#ifdef _DEBUG
+		ret = Println(log);
+#else
+		ret = _WriteToFile(log);
+#endif
+	}
+	return ret;
+}
+
+void AuroraLog::PrintToFile(const std::string& log)
+{
+	time_t nowtime;
+	time(&nowtime);
+	tm* p = localtime(&nowtime);
+	FILE* pFile = fopen(g_strLogFileName.c_str(), "a+");
+	if (!pFile)
+	{
+		return;
+	}
+	fprintf(pFile, "[%d-%02d-%02d %02d:%02d:%02d] %s\n", p->tm_year + 1900, p->tm_mon + 1, p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec,
+		log.c_str());
+	fclose(pFile);
+}
+
+int AuroraLog::_WriteToFile(const std::string& log)
+{
+	int ret = 0;
+	time_t nowtime;
+	time(&nowtime);
+	tm* p = localtime(&nowtime);
+	FILE* pFile = fopen(g_strLogFileName.c_str(), "a+");
+	if (!pFile)
+	{
+		return ret;
+	}
+	ret = fprintf(pFile, "[%d-%02d-%02d %02d:%02d:%02d] %s\n", p->tm_year + 1900, p->tm_mon + 1, p->tm_mday, p->tm_hour, p->tm_min, p->tm_sec,
+		log.c_str());
+	fclose(pFile);
+	return ret;
 }
 

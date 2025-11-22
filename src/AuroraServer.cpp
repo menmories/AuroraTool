@@ -33,7 +33,8 @@ void AuroraServer::SetConfig(const AuroraServerConfig& config)
 int AuroraServer::Run()
 {
     AuroraLog::Println(std::string("Server version:") + AuroraServer::GetVersion());
-    AuroraLog::Println("Server Start...");
+    AuroraLog::Println("Server start.");
+    AuroraLog::PrintToFile("Server start.");
     int ret = m_server->Run(m_config.Addr.c_str(), m_config.Port);
     AuroraLog::Println("Server Stop.");
     return ret;
