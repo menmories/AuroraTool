@@ -8,7 +8,10 @@ AuroraServer::AuroraServer()
 
 #ifdef PLATFORM_WINDOWS
     WSAData g_wsaData = { 0 };
-    WSAStartup(MAKEWORD(2, 2), &g_wsaData);
+    if (WSAStartup(MAKEWORD(2, 2), &g_wsaData))
+    {
+        AuroraLog::Println("WSAStartup error.");
+    }
 #endif
 }
 

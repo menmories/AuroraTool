@@ -8,6 +8,7 @@ extern "C"
 #include <event2/buffer.h>
 #include <event2/dns.h>
 #include <event2/listener.h>
+#include <event2/thread.h>
 }
 
 #include "PlatformDef.h"
