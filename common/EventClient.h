@@ -20,7 +20,7 @@ public:
 
     int Run(const char* addr, unsigned short port);
 protected:
-    virtual void RecvData(struct bufferevent* bev, AuroraPackage* package);
+    
 private:
     static void Read_Cb(struct bufferevent* bev, void* ctx);
     static void Write_Cb(struct bufferevent* bev, void* ctx);

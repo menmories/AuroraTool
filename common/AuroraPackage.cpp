@@ -13,9 +13,9 @@ AuroraPackage::~AuroraPackage()
 	free(RecvBuffer);
 }
 
-bool AuroraPackage::RecvData(const u8* data, size_t len)
+bool AuroraPackage::RecvData(const u8* data, u32 len)
 {
-    size_t handedLen = 0;
+    u32 handedLen = 0;
     u32 needSize = 0;
     while (handedLen < len)
     {

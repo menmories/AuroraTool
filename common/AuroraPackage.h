@@ -39,7 +39,7 @@ public:
 	* true  数据包接收完毕
 	* false 数据包还未接收完毕
 	*/
-	bool RecvData(const u8* data, size_t len);
+	bool RecvData(const u8* data, u32 len);
 
 	void Reset();
 public:

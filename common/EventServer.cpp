@@ -105,7 +105,7 @@ size_t ReadLastData(AuroraPackage& package, u8* data, size_t size)
 void EventServer::Read_Cb(struct bufferevent *bev, void *ctx)
 {
     EventServerParams* eventServerParams = (EventServerParams*)ctx;
-    size_t size = bufferevent_read(bev, eventServerParams->RecvBuffer, BUFFER_SIZE);
+    u32 size = (u32)bufferevent_read(bev, eventServerParams->RecvBuffer, BUFFER_SIZE);
     if (size > 0) 
     {
         if (eventServerParams->Package.RecvData(eventServerParams->RecvBuffer, size))

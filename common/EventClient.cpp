@@ -81,26 +81,15 @@ int EventClient::Run(const char* addr, unsigned short port)
     return event_base_dispatch(m_base);
 }
 
-void EventClient::RecvData(bufferevent* bev, AuroraPackage* package)
-{
-
-}
-
-
-size_t ReadLastData(AuroraPackage& package, u8* data, size_t size)
-{
-    return 0;
-}
-
 void EventClient::Read_Cb(struct bufferevent* bev, void* ctx)
 {
     EventClientParams* params = (EventClientParams*)ctx;
-    size_t size = bufferevent_read(bev, params->RecvBuffer, BUFFER_SIZE);
+    u32 size = (u32)bufferevent_read(bev, params->RecvBuffer, BUFFER_SIZE);
     if (size > 0)
     {
         if (params->Package.RecvData(params->RecvBuffer, size))
         {
-            //½ÓÊÕÍê±Ï
+            //æŽ¥æ”¶å®Œæ¯•
 
         }
     }
