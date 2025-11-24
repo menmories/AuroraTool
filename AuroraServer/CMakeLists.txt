@@ -10,20 +10,21 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(HEADER_FILES
+    "include/AuroraServer.h"    
     "${CMAKE_SOURCE_DIR}/common/PlatformDef.h"
     "${CMAKE_SOURCE_DIR}/common/AuroraLog.h"
     "${CMAKE_SOURCE_DIR}/common/AuroraPackage.h"
-    "include/AuroraServer.h"
     "${CMAKE_SOURCE_DIR}/common/EventServer.h"
     "${CMAKE_SOURCE_DIR}/common/AuroraServerConfig.h"
 )
 
 set(SOURCE_FILES
     "src/main.cpp"
+    "src/AuroraServer.cpp"
     "${CMAKE_SOURCE_DIR}/common/AuroraLog.cpp"
     "${CMAKE_SOURCE_DIR}/common/AuroraPackage.cpp"
     "${CMAKE_SOURCE_DIR}/common/EventServer.cpp"
-    "src/AuroraServer.cpp"
+    
     "${CMAKE_SOURCE_DIR}/common/AuroraServerConfig.cpp"
 )
 

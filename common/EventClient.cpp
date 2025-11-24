@@ -57,14 +57,15 @@ int EventClient::Run(const char* addr, unsigned short port)
 #ifdef PLATFORM_LINUX
     m_base = event_base_new();
 #else
-    SYSTEM_INFO sysInfo;
+    m_base = event_base_new();
+    /*SYSTEM_INFO sysInfo;
     GetSystemInfo(&sysInfo);
     event_config* config = event_config_new();
     evthread_use_windows_threads();
     event_config_set_flag(config, EVENT_BASE_FLAG_STARTUP_IOCP);
     event_config_set_num_cpus_hint(config, sysInfo.dwNumberOfProcessors * 2);
     m_base = event_base_new_with_config(config);
-    event_config_free(config);
+    event_config_free(config);*/
 #endif
 
     sockaddr_in sockAddr = { 0 };
@@ -74,7 +75,10 @@ int EventClient::Run(const char* addr, unsigned short port)
     evutil_inet_pton(AF_INET, addr, &sockAddr);
     
     m_bev = NewBufferevent();
-    bufferevent_socket_connect(m_bev, (const sockaddr*)&sockAddr, sizeof(sockAddr));
+    if (bufferevent_socket_connect(m_bev, (const sockaddr*)&sockAddr, sizeof(sockAddr)) < 0)
+    {
+        return -1;
+    }
 
     //bufferevent_socket_connect_hostname(m_bev, );
 
@@ -107,6 +111,15 @@ void EventClient::Event_Cb(struct bufferevent* bev, short what, void* ctx)
     if (what & BEV_EVENT_EOF || what & BEV_EVENT_ERROR)
     {
         delete params;
+        return;
+    }
+    if (what & BEV_EVENT_CONNECTED)
+    {
+        AuroraLog::Println("Connect to server success.\n");
+    }
+    if (what & BEV_EVENT_TIMEOUT)
+    {
+        AuroraLog::Println("Timeout.\n");
     }
 }
 

@@ -14,10 +14,10 @@ set(HEADER_FILES
     "${CMAKE_SOURCE_DIR}/common/PlatformDef.h"
     "${CMAKE_SOURCE_DIR}/common/AuroraLog.h"
     "${CMAKE_SOURCE_DIR}/common/AuroraPackage.h"
-    "include/AuroraServer.h"
     "${CMAKE_SOURCE_DIR}/common/EventServer.h"
     "${CMAKE_SOURCE_DIR}/common/EventClient.h"
     "${CMAKE_SOURCE_DIR}/common/AuroraServerConfig.h"
+    "include/AuroraServer.h"
     "include/AuroraProxy.h"
 )
 # ${CMAKE_SOURCE_DIR}
@@ -27,8 +27,8 @@ set(SOURCE_FILES
     "${CMAKE_SOURCE_DIR}/common/AuroraPackage.cpp"
     "${CMAKE_SOURCE_DIR}/common/EventServer.cpp"
     "${CMAKE_SOURCE_DIR}/common/EventClient.cpp"
-    "src/AuroraServer.cpp"
     "${CMAKE_SOURCE_DIR}/common/AuroraServerConfig.cpp"
+    "src/AuroraServer.cpp"
     "src/AuroraProxy.cpp"
 )
 
