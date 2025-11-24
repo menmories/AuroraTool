@@ -29,11 +29,11 @@ typedef double f64;
 
 #define AURORA_INLINE __forceinline
 
-#ifdef  FANTACY_EXPORT
-#define FANTACY_API __declspec(dllexport)
+#ifdef  AURORA_EXPORT
+#define AURORA_API __declspec(dllexport)
 #else 
 #define AURORA_API __declspec(dllimport)
-#endif  // FANTACY_EXPORTdwQADDWAWDAADWAASD
+#endif  // FANTACY_EXPORT
 
 
 #endif  // !PLATFORM_WINDOWS

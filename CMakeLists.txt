@@ -21,3 +21,8 @@ add_subdirectory(AuroraServer)
 add_subdirectory(AuroraProxy)
 add_subdirectory(AuroraClient)
 
+if(MSVC)
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT AuroraProxy)    
+endif(MSVC)
+
+
