@@ -15,16 +15,18 @@ set(HEADER_FILES
     "include/AuroraLog.h"
     "include/AuroraPackage.h"
     "include/AuroraServer.h"
-    "include/EventServer.h"
+    "${CMAKE_SOURCE_DIR}/common/EventServer.h"
+    "${CMAKE_SOURCE_DIR}/common/EventClient.h"
     "include/AuroraServerConfig.h"
     "include/AuroraProxy.h"
 )
-
+# ${CMAKE_SOURCE_DIR}
 set(SOURCE_FILES
     "src/main.cpp"
     "src/AuroraLog.cpp"
     "src/AuroraPackage.cpp"
-    "src/EventServer.cpp"
+    "${CMAKE_SOURCE_DIR}/common/EventServer.cpp"
+    "${CMAKE_SOURCE_DIR}/common/EventClient.cpp"
     "src/AuroraServer.cpp"
     "src/AuroraServerConfig.cpp"
     "src/AuroraProxy.cpp"
@@ -54,6 +56,7 @@ endif(MSVC)
 
 include_directories(
     "include"
+    "${CMAKE_SOURCE_DIR}/common"
 )
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
